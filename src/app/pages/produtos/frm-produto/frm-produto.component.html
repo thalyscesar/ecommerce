@@ -1,0 +1,32 @@
+<form [formGroup]="modelForm" (submit)='enviarForm()' style="padding: 10px;">
+  <input type="hidden" id="id">
+  <div class="card">
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="Codigo">Codigo</label>
+            <input type="text" class="form-control"  formControlName='codigo'  [ngClass]="controleValido(modelForm.get('codigo'))" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Nome">Nome</label>
+            <input type="text" class="form-control" id="nome" formControlName='nome'  [ngClass]="controleValido(modelForm.get('codigo'))" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="Valor">Valor</label>
+            <input [imask]="imaskConfig" type="text" class="form-control" formControlName='valor'  [ngClass]="controleValido(modelForm.get('valor'))" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-success float-right mt-3">Salvar</button>
+  <button type="button" class="btn btn-primary float-right mt-3 mr-2" (click)="cancelar($event)">
+    Cancelar
+  </button>
+</form>

@@ -1,0 +1,93 @@
+
+ <div class="p-2">
+  <form [formGroup]="modelForm" class="card" (submit)='enviarForm()'>
+      <div class="card-body ">
+            <div class="row">
+              <div class=" col-md-4 form-group">
+                <label for="cliente">Cliente</label>
+                <select class="form-control" formControlName="cliente">
+                  <option *ngFor="let cliente of clientes" [value]="cliente.id" >{{cliente.nome}}</option>
+                </select>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class=" col-md-4 form-group">
+              <label for="produto">Produto</label>
+              <select class="form-control" formControlName="produto">
+                <option *ngFor="let produto of produtos" [value]="produto.id" >{{produto.nome}}</option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <button style="border-radius: 60px; margin-top:35px"  class="btn btn-success btn-sm mt-35" type="button" (click)="adicionarItemPedido()">Adicionar</button>
+              </div>
+            </div>
+        </div>
+      </div>
+        <div class="card mb-5 ml-3 mr-3">
+          <div class="card-body">
+            <table #tabela class="table table-sm table-bordered table-hover">
+              <thead class="text-secondary">
+                <tr>
+                  <th>Produto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of modelBase.itens">
+                  <td>
+                    <div class="divflex">
+                      <div class="inf-produto">
+                          <img style="border-radius: 120px;" [src]="item.produto.imagem" />
+                          <div class="conteudo" style="display: inline-block; padding: 5px;">
+                            <div class="codigo">
+                              <small style="color: lightgray;"> {{ item.produto.codigo }}</small>
+                            </div>
+                            <div class="descricao">
+                              <strong style="font-size: 16px; font-family: Georgia, 'Times New Roman', Times, serif;">{{ item.produto.nome }}</strong>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="valores">
+                        <input type="number" min='1' [value]="item.quantidade" (input)="adicionarQuantidade(item,$event)"/> <label> X {{ item.produto.valor }} </label>
+                        <div>
+                          <label>Valor Total: {{ calcularValor(item) | currency:'BRL':true  }}</label>
+                        </div>
+                      </div>
+
+                    </div>
+                  <td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <!-- </div>
+    </div> -->
+
+    <div *ngIf="modelBase.itens.length > 0"  class="card mt-5">
+      <div class="card-body">
+        <h4><strong>Total</strong></h4>
+
+        <div class="totalizador">
+          <div class="itens">Itens</div>
+          <div class="valoritem"> {{ modelBase.CalcularValorTotalItens() | currency:'BRL':true }}</div>
+          <button class="btn btn-success btn-lg fim">Finalizar Pedido</button>
+        </div>
+
+        <div class="freteflex">
+              <div class="frete">Frete</div>
+              <div class="valorfrete"> {{ modelBase.valorFrete | currency:'BRL':true }}</div>
+              <button class="btn btn-primary btn-lg carrinho" type="button" (click)="limparCarrinho()">Limpar Carrinho</button>
+        </div>
+        <div class="totalflex">
+          <div class="total bg-dark">Total</div>
+          <div class="totalvalor">{{ modelBase.CalcularValorTotalAcrecidoDoFrete() | currency:'BRL':true }}</div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+

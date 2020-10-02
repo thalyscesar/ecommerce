@@ -1,0 +1,62 @@
+.totalizador, .freteflex, .totalflex {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.itens, .frete{
+  width: 400px;
+
+}
+
+.valoritem, .valorfrete {
+  width: 400px;
+}
+
+.fim , .carrinho {
+  flex:  1;
+}
+
+hr {
+  width: 500px;
+  float: left;
+}
+
+.total {
+  flex:1;
+  color: lightgray;
+  background-color: red;
+}
+
+.totalvalor {
+  width:903px;
+}
+
+
+
+.valorfrete {
+  flex: 1;
+
+
+}
+
+.divflex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.inf-produto {
+  flex: 1;
+  margin: 5px;
+}
+
+.valores {
+  flex: 1;
+  background-color:green;
+
+
+}
+
+
